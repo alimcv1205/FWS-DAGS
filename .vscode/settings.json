@@ -1,0 +1,10 @@
+{
+    "workbench.commandPalette.experimental.suggestCommands": true,
+    "workbench.editor.autoLockGroups": {
+        "workbench.editors.gettingStartedInput": true,
+        "jupyter-notebook": true
+    },
+    "workbench.editor.closeOnFileDelete": true,
+    "git.timeline.showUncommitted": true,
+    "git.terminalGitEditor": true
+}
