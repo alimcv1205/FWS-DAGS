@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+	<script type="text/javascript" async="" src="dag.js"></script>
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>    
+    <script src="cytoscape.min.js"></script>
+    <style>
+        body {
+            font-family: helvetica neue, helvetica, liberation sans, arial, sans-serif;
+            font-size: 14px;
+        }
+
+        #cy {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 999;
+        }
+
+        h1 {
+            opacity: 0.5;
+            font-size: 1em;
+            font-weight: bold;
+        }
+    </style>
+
+    <title>Page Title</title>
+</head>
+<body>
+
+<h1>My Directed Acyclic Graph</h1>
+<div id="cy"></div>
+<div><button id="btn_Longest" name="btn_Longest" type="button" value="Find The Longest Path" title="btnLongestPath" onclick="DisplayPath()"></button></div>
+
+
+<script>
+   
+    var cy = cytoscape({
+    
+    container: document.getElementById('cy'), // container to render in
+    
+    elements: [ // list of graph elements to start with
+      // nodes      
+      { data: { id: '0' } },
+      { data: { id: '1' } },
+      { data: { id: '2' } },
+      { data: { id: '3' } },
+      { data: { id: '4' } },
+      { data: { id: '5' } },
+      // edges
+      { data: { source: '0', target: '1',  label: 'Weight: 5'}, classes: 'autorotate' },
+      { data: { source: '0', target: '2',  label: 'Weight: 3'}, classes: 'autorotate' },
+      { data: { source: '1', target: '3',  label: 'Weight: 6'}, classes: 'autorotate' },
+      { data: { source: '1', target: '2',  label: 'Weight: 2'}, classes: 'autorotate' },
+      { data: { source: '2', target: '4',  label: 'Weight: 4'}, classes: 'autorotate' },
+      { data: { source: '2', target: '5',  label: 'Weight: 2'}, classes: 'autorotate' },
+      { data: { source: '2', target: '3',  label: 'Weight: 7'}, classes: 'autorotate' },
+      { data: { source: '3', target: '5',  label: 'Weight: 1'}, classes: 'autorotate' },
+      { data: { source: '3', target: '4',  label: 'Weight: -1'}, classes: 'autorotate' },
+      { data: { source: '4', target: '5',  label: 'Weight: -2'}, classes: 'autorotate' }
+    ],
+    
+    style: [ // the stylesheet for the graph
+      {
+        selector: 'node',
+        style: {
+          'background-color': '#E21',
+          'label': 'data(id)'
+        }
+      },
+    
+      {
+        selector: 'edge',
+        style: {
+          'label': 'data(label)',
+          'line-color': '#ccc',
+          'target-arrow-color': '#ccc',
+          'target-arrow-shape': 'triangle',
+          'curve-style': 'bezier'
+        }
+      }
+    ],
+    
+    layout: {
+      name: 'breadthfirst',
+      rows: 4
+    }
+    
+    });
+    </script>
+    <!-- <script>
+			document.addEventListener('DOMContentLoaded', function(){
+
+				var cy = window.cy = cytoscape({
+					container: document.getElementById('cy'),
+
+					// demo your layout
+					layout: {
+						name: 'klay',
+
+						// some more options here...
+					},
+
+					style: [
+						{
+							selector: 'node',
+							style: {
+								'background-color': '#dd4de2'
+							}
+						},
+
+						{
+							selector: 'edge',
+							style: {
+								'curve-style': 'bezier',
+								'target-arrow-shape': 'triangle',
+								'line-color': '#dd4de2',
+								'target-arrow-color': '#dd4de2',
+								'opacity': 0.5
+							}
+						}
+					],
+
+					elements: fetch('./example-graphs/planar-chain.json').then(function( res ){ return res.json(); })
+				});
+
+
+			});
+		</script> -->
+    </body>
+</html>
